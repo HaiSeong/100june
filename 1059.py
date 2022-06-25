@@ -1,21 +1,25 @@
-# 조합을 이용해 풀었다. 이번 학기 이산수학과 확렌프를 들어서 쉽게 풀수 있었다.
-# nCr = n!/(r!*(n-r)!)
 
-times = int(input())
+# 본질적인 알고리즘은 쉬웠지만 조건이 꽤 까다로웠다.
+# 0을 추가해서 1<=n<=max(S)의 조건을 걸어줘야하는 문제였다.
 
-for _ in range(times):
-    n, m = map(int, input().split())
+l = int(input())
+array = list(map(int, input().split()))
+n = int(input())
 
-    fact1 = 1   # n!
-    for i in range(2, m+1):
-        fact1 *= i
-    fact2 = 1   # r!
-    for i in range(2, n+1):
-        fact2 *= i
-    fact3 = 1   # (n-r)!
-    for i in range(2, m-n+1):
-        fact3 *= i
+array.append(0)
+array.sort()
+left, right = 0,0
 
-    comb = fact1 // fact2 // fact3  #nCrR
+for i in range(len(array) - 1):
+    if array[i] <= n <= array[i+1]:
+        left, right = array[i], array[i+1]
+        break
 
-    print(comb)
+cnt = 0
+
+for i in range(left+1, right):
+    for j in range(i+1, right):
+        if i<=n<=j:
+            cnt+=1
+
+print(cnt)
