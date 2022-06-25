@@ -1,16 +1,21 @@
-# This is a sample Python script.
+# 조합을 이용해 풀었다. 이번 학기 이산수학과 확렌프를 들어서 쉽게 풀수 있었다.
+# nCr = n!/(r!*(n-r)!)
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+times = int(input())
 
+for _ in range(times):
+    n, m = map(int, input().split())
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    fact1 = 1   # n!
+    for i in range(2, m+1):
+        fact1 *= i
+    fact2 = 1   # r!
+    for i in range(2, n+1):
+        fact2 *= i
+    fact3 = 1   # (n-r)!
+    for i in range(2, m-n+1):
+        fact3 *= i
 
+    comb = fact1 // fact2 // fact3  #nCrR
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(comb)
